@@ -12,9 +12,87 @@
             android:layout_width="130dp"
             android:layout_height="66dp"
             android:id="@+id/waterProgressBar"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.874"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.937"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.069"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.184"
     />
+    <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="130dp"
+            android:layout_height="67dp"
+            android:id="@+id/exerciseProgressBar"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.062"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.319"
+    />
+    <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="130dp"
+            android:layout_height="66dp"
+            android:id="@+id/weightProgressBar"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.062"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.184"
+    />
+    <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="328dp"
+            android:layout_height="66dp"
+            android:id="@+id/healthProgressBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.035"
+    />
+    <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="130dp"
+            android:layout_height="66dp"
+            android:id="@+id/foodProgressBar"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.937"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.319"
+    />
+    <TextView
+            android:text="Heath:"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:id="@+id/healthText" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+    <TextView
+            android:text="Weight:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/weightText" app:layout_constraintStart_toEndOf="@+id/weightProgressBar"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/weightProgressBar"
+            app:layout_constraintTop_toBottomOf="@+id/healthProgressBar"
+            app:layout_constraintBottom_toTopOf="@+id/weightProgressBar"/>
+    <TextView
+            android:text="Exercise:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/exerciseText"
+            app:layout_constraintTop_toBottomOf="@+id/weightProgressBar"
+            app:layout_constraintBottom_toTopOf="@+id/exerciseProgressBar"
+            app:layout_constraintStart_toEndOf="@+id/exerciseProgressBar" app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/exerciseProgressBar"/>
+    <TextView
+            android:text="Water:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/waterText"
+            app:layout_constraintTop_toBottomOf="@+id/healthProgressBar"
+            app:layout_constraintBottom_toTopOf="@+id/waterProgressBar"
+            app:layout_constraintStart_toEndOf="@+id/waterProgressBar" app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/waterProgressBar"/>
+    <TextView
+            android:text="Food:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/foodText"
+            app:layout_constraintTop_toBottomOf="@+id/waterProgressBar"
+            app:layout_constraintBottom_toTopOf="@+id/foodProgressBar"
+            app:layout_constraintStart_toEndOf="@+id/foodProgressBar" app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/foodProgressBar"/>
 
 </android.support.constraint.ConstraintLayout>
