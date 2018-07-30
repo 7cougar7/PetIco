@@ -1,7 +1,6 @@
 package com.example.t7cougar7.petico.Controllers;
 
 import android.os.Handler;
-import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.example.t7cougar7.petico.MainActivity;

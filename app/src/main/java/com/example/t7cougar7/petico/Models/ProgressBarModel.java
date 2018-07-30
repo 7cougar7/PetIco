@@ -2,7 +2,6 @@ package com.example.t7cougar7.petico.Models;
 
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import org.w3c.dom.Text;
 
 public class ProgressBarModel {
 

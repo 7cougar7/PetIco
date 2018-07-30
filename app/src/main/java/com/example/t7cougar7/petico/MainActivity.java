@@ -6,10 +6,10 @@ import android.os.Handler;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.example.t7cougar7.petico.Controllers.ProgressBarController;
+import com.example.t7cougar7.petico.Controllers.TimeController;
 import com.example.t7cougar7.petico.Models.ProgressBarModel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static android.os.SystemClock.sleep;
@@ -17,6 +17,7 @@ import static android.os.SystemClock.sleep;
 public class MainActivity extends Activity {
 
     private final ProgressBarController progressBarController = new ProgressBarController();
+    private final TimeController timeController = new TimeController();
 
     public static final List<ProgressBarModel> ALL_PROGRESS_BARS = new ArrayList<>();
 
@@ -42,6 +43,26 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initializeViewObjects();
+        progressBarController.initProgressBars(mainHandler);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                main();
+            }
+        }).start();
+    }
+
+    public void main() {
+        timeController.startGameClock();
+        for (int i = 0; i < 20; i++) {
+            sleep(2000);
+            progressBarController.initProgressBars(mainHandler);
+        }
+    }
+
+    private void initializeViewObjects(){
         healthProgressBar = findViewById(R.id.healthProgressBar);
         waterProgressBar = findViewById(R.id.waterProgressBar);
         foodProgressBar = findViewById(R.id.foodProgressBar);
@@ -79,20 +100,5 @@ public class MainActivity extends Activity {
                         weightProgressBar, "weightProgressBar", 40, 80, "Weight: ", weightText
                 )
         );
-        progressBarController.initProgressBars(mainHandler);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                main();
-            }
-        }).start();
-    }
-
-    public void main() {
-        for (int i = 0; i < 20; i++) {
-            sleep(2000);
-            progressBarController.initProgressBars(mainHandler);
-        }
     }
 }
