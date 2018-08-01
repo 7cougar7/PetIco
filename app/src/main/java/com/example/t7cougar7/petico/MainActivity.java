@@ -8,9 +8,9 @@ import android.widget.TextView;
 import com.example.t7cougar7.petico.Controllers.ProgressBarController;
 import com.example.t7cougar7.petico.Controllers.TimeController;
 import com.example.t7cougar7.petico.Models.ProgressBarModel;
+import com.example.t7cougar7.petico.Utils.MainUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import static android.os.SystemClock.sleep;
 
@@ -18,8 +18,9 @@ public class MainActivity extends Activity {
 
     private final ProgressBarController progressBarController = new ProgressBarController();
     private final TimeController timeController = new TimeController();
+    private final MainUtils mainUtils = new MainUtils();
 
-    public static final List<ProgressBarModel> ALL_PROGRESS_BARS = new ArrayList<>();
+    public static final HashMap<String, ProgressBarModel> ALL_PROGRESS_BARS = new HashMap();
 
     public ProgressBar healthProgressBar;
     public ProgressBar waterProgressBar;
@@ -35,7 +36,7 @@ public class MainActivity extends Activity {
 
 
 
-    private final Handler mainHandler = new Handler();
+    public static final Handler mainHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +57,9 @@ public class MainActivity extends Activity {
 
     public void main() {
         timeController.startGameClock();
-        for (int i = 0; i < 20; i++) {
-            sleep(2000);
-            progressBarController.initProgressBars(mainHandler);
-        }
+        sleep(10000);
+        mainUtils.asyncTask(timeController.changeStatViaTime(1000, ALL_PROGRESS_BARS.get("healthProgressBarModel"), -1));
+        mainUtils.asyncTask(timeController.changeStatViaTime(750, ALL_PROGRESS_BARS.get("waterProgressBarModel"), -1));
     }
 
     private void initializeViewObjects(){
@@ -75,29 +75,29 @@ public class MainActivity extends Activity {
         exerciseText = findViewById(R.id.exerciseText);
         weightText = findViewById(R.id.weightText);
 
-        ALL_PROGRESS_BARS.add(
+        ALL_PROGRESS_BARS.put("healthProgressBarModel",
                 new ProgressBarModel(
-                        healthProgressBar,"healthProgressBar", 100, 100, "Health: ", healthText
+                        healthProgressBar, 100, 100, "Health: ", healthText
                 )
         );
-        ALL_PROGRESS_BARS.add(
+        ALL_PROGRESS_BARS.put("waterProgressBarModel",
                 new ProgressBarModel(
-                        waterProgressBar, "waterProgressBar", 60, 100, "Water: ", waterText
+                        waterProgressBar, 60, 100, "Water: ", waterText
                 )
         );
-        ALL_PROGRESS_BARS.add(
+        ALL_PROGRESS_BARS.put("foodProgressBarModel",
                 new ProgressBarModel(
-                        foodProgressBar, "foodProgressBar", 40, 100, "Food: ", foodText
+                        foodProgressBar, 40, 100, "Food: ", foodText
                 )
         );
-        ALL_PROGRESS_BARS.add(
+        ALL_PROGRESS_BARS.put("exerciseProgressBarModel",
                 new ProgressBarModel(
-                        exerciseProgressBar,"exerciseProgressBar", 30, 100, "Exercise: ", exerciseText
+                        exerciseProgressBar,30, 100, "Exercise: ", exerciseText
                 )
         );
-        ALL_PROGRESS_BARS.add(
+        ALL_PROGRESS_BARS.put("weightProgressBarModel",
                 new ProgressBarModel(
-                        weightProgressBar, "weightProgressBar", 40, 80, "Weight: ", weightText
+                        weightProgressBar, 40, 80, "Weight: ", weightText
                 )
         );
     }
