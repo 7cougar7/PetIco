@@ -58,8 +58,15 @@ public class MainActivity extends Activity {
     public void main() {
         timeController.startGameClock();
         sleep(10000);
-        mainUtils.asyncTask(timeController.changeStatViaTime(1000, ALL_PROGRESS_BARS.get("healthProgressBarModel"), -1));
-        mainUtils.asyncTask(timeController.changeStatViaTime(750, ALL_PROGRESS_BARS.get("waterProgressBarModel"), -1));
+        mainUtils.asyncTask(timeController.changeStatViaTime(100, ALL_PROGRESS_BARS.get("healthProgressBarModel"), -1));
+        sleep(3);
+        mainUtils.asyncTask(timeController.changeStatViaTime(75, ALL_PROGRESS_BARS.get("waterProgressBarModel"), -1));
+        sleep(7);
+        mainUtils.asyncTask(timeController.changeStatViaTime(150, ALL_PROGRESS_BARS.get("foodProgressBarModel"), -1));
+        sleep(2);
+        mainUtils.asyncTask(timeController.changeStatViaTime(170, ALL_PROGRESS_BARS.get("weightProgressBarModel"), -1));
+        sleep(5);
+        mainUtils.asyncTask(timeController.changeStatViaTime(35, ALL_PROGRESS_BARS.get("exerciseProgressBarModel"), -1));
     }
 
     private void initializeViewObjects(){
