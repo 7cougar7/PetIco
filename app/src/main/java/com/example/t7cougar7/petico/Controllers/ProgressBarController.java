@@ -1,5 +1,6 @@
 package com.example.t7cougar7.petico.Controllers;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,31 +31,40 @@ public class ProgressBarController {
                                   final boolean relativeLevel) {
         final ProgressBar progressBar = progressBarModel.getProgressBarViewObject();
         final TextView textView = progressBarModel.getTextViewDisplay();
-        final String displaytext = progressBarModel.getDisplaytext();
+        final String displayText = progressBarModel.getDisplaytext();
         mainUtils.asyncTask(new Runnable() {
             @Override
             public void run() {
+                final boolean isIncreasing = (progressLevel > 0);
                 int currentLevel = progressBar.getProgress();
-                if (currentLevel != progressLevel) {
-                    int levelChange;
-                    if (relativeLevel) {
-                        levelChange = progressLevel;
+                if ((currentLevel == progressLevel) || (isIncreasing && currentLevel == 100) || (!isIncreasing && currentLevel == 0)) {
+                    return;
+                }
+                int levelChange;
+                if (relativeLevel) {
+                    if (progressLevel + currentLevel > 100) {
+                        levelChange = 100 - currentLevel;
+                    } else if (progressLevel + currentLevel < 0) {
+                        levelChange = 0 - currentLevel;
                     } else {
-                        levelChange = progressLevel - currentLevel;
+                        levelChange = progressLevel;
                     }
-                    final int changeDirection = levelChange / Math.abs(levelChange);
-                    for (int i = 0; i < Math.abs(levelChange); i++) {
-                        final int newLevel = currentLevel + (changeDirection * (i + 1));
-                        sleep(SLEEP_DELAY);
-                        mainHandler.post(
-                                new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        progressBar.setProgress(newLevel);
-                                        textView.setText(displaytext + newLevel + "%  " + TimeController.getMainClock());
-                                    }
-                                });
-                    }
+                } else {
+                    levelChange = progressLevel - currentLevel;
+                }
+                final int changeDirection = levelChange / Math.abs(levelChange);
+                for (int i = 0; i < Math.abs(levelChange); i++) {
+                    final int newLevel = currentLevel + (changeDirection * (i + 1));
+                    sleep(SLEEP_DELAY);
+                    mainHandler.post(
+                            new Runnable() {
+                                @SuppressLint("SetTextI18n")
+                                @Override
+                                public void run() {
+                                    progressBar.setProgress(newLevel);
+                                    textView.setText(displayText + newLevel + "%  " + TimeController.getMainClock());
+                                }
+                            });
                 }
             }
         });

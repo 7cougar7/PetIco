@@ -94,5 +94,45 @@
             app:layout_constraintBottom_toTopOf="@+id/foodProgressBar"
             app:layout_constraintStart_toEndOf="@+id/foodProgressBar" app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toStartOf="@+id/foodProgressBar"/>
+    <TextView
+            android:text="debug TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/debuggerView" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/healthProgressBar"/>
+    <Button
+            android:text="Increase Food"
+            android:layout_width="90dp"
+            android:layout_height="53dp"
+            android:id="@+id/foodButton" app:layout_constraintStart_toEndOf="@+id/waterButton"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/exerciseButton"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/debuggerView"
+            app:layout_constraintVertical_bias="0.894"/>
+    <Button
+            android:text="Increase Exercise"
+            android:layout_width="90dp"
+            android:layout_height="53dp"
+            android:id="@+id/exerciseButton" app:layout_constraintStart_toEndOf="@+id/foodButton"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/weightButton"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/debuggerView"
+            app:layout_constraintVertical_bias="0.894"/>
+    <Button
+            android:text="Increase Weight"
+            android:layout_width="90dp"
+            android:layout_height="53dp"
+            android:id="@+id/weightButton" app:layout_constraintStart_toEndOf="@+id/exerciseButton"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/foodProgressBar"
+            app:layout_constraintVertical_bias="0.936"/>
+    <Button
+            android:text="Increase Water"
+            android:layout_width="90dp"
+            android:layout_height="53dp"
+            android:id="@+id/waterButton" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/foodButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exerciseProgressBar" app:layout_constraintVertical_bias="0.935"/>
 
 </android.support.constraint.ConstraintLayout>

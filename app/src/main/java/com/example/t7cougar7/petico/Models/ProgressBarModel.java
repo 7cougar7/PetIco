@@ -15,16 +15,20 @@ public class ProgressBarModel {
 
     private final TextView textViewDisplay;
 
+    private final int idealLevel;
+
     public ProgressBarModel(final ProgressBar progressBarViewObject,
                             final int initMin,
                             final int initMax,
                             final String displayText,
-                            final TextView textViewDisplay) {
+                            final TextView textViewDisplay,
+                            final int idealLevel) {
         this.progressBarViewObject = progressBarViewObject;
         this.initMin = initMin;
         this.initMax = initMax;
         this.displaytext = displayText;
         this.textViewDisplay = textViewDisplay;
+        this.idealLevel = idealLevel;
     }
 
     public ProgressBar getProgressBarViewObject() {
@@ -45,5 +49,9 @@ public class ProgressBarModel {
 
     public TextView getTextViewDisplay() {
         return textViewDisplay;
+    }
+
+    public int getIdealLevel() {
+        return idealLevel;
     }
 }
