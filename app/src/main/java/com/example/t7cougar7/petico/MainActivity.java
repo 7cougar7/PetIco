@@ -1,6 +1,7 @@
 package com.example.t7cougar7.petico;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -23,6 +24,8 @@ public class MainActivity extends Activity {
     private final MainUtils mainUtils = new MainUtils();
 
     public static final HashMap<String, ProgressBarModel> ALL_PROGRESS_BARS = new HashMap();
+
+    private MediaPlayer backgroundMusic;
 
     public ProgressBar healthProgressBar;
     public ProgressBar waterProgressBar;
@@ -52,6 +55,8 @@ public class MainActivity extends Activity {
 
         initializeViewObjects();
         progressBarController.initProgressBars(mainHandler);
+        backgroundMusic = MediaPlayer.create(MainActivity.this, R.raw.cats_and_playing_cards);
+        backgroundMusic.setLooping(true);
 
         new Thread(new Runnable() {
             @Override
@@ -61,8 +66,15 @@ public class MainActivity extends Activity {
         }).start();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        backgroundMusic.release();
+    }
+
     public void main() {
         timeController.startGameClock();
+        backgroundMusic.start();
         sleep(3000);
         mainUtils.asyncTask(timeController.changeStatViaTime(75, ALL_PROGRESS_BARS.get("waterProgressBarModel"), -1));
         sleep(7);
